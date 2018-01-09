@@ -9,7 +9,20 @@ const core_1 = require("@angular/core");
 const contatos_mock_1 = require("./../contatos-mock");
 let ContatoService = class ContatoService {
     getContatos() {
-        return contatos_mock_1.CONTATOS;
+        return Promise.resolve(contatos_mock_1.CONTATOS);
+    }
+    getContatosSlowly() {
+        return new Promise((resolve, reject) => {
+            setTimeout(resolve, 3000);
+        }).then(() => this.getContatos());
+    }
+    getContatoPorId(id) {
+        return this.getContatos()
+            .then((contatos) => {
+            return contatos.find((contato) => {
+                return contato.id === id;
+            });
+        });
     }
 };
 ContatoService = __decorate([

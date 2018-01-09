@@ -20,7 +20,12 @@ export class ContatosListaComponent implements OnInit{
     
     public contatos : Contato[];
     getListContato(){
-        this.contatos = this.contatoService.getContatos();
-    }
 
+        this.contatoService.getContatosSlowly()
+            .then((contatos: Contato[]) =>   {
+                this.contatos = contatos;
+            }).catch(err => console.log(err));
+        
+    }
+    
 }

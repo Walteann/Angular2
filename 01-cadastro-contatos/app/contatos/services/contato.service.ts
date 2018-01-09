@@ -7,9 +7,23 @@ import {CONTATOS} from './../contatos-mock';
 export class ContatoService{
 
 
-    getContatos(): Contato[]   {
-        return CONTATOS;
+    getContatos(): Promise<Contato[]>{
+        return Promise.resolve(CONTATOS);
     }
 
+    getContatosSlowly(): Promise<Contato[]> {
+        return new Promise((resolve, reject) => {
+            setTimeout(resolve, 3000);
+        }).then(() => this.getContatos());
+    }
+
+    getContatoPorId(id: number): Promise<Contato>   {
+        return this.getContatos()
+            .then((contatos: Contato[]) =>  {
+                return contatos.find((contato) =>  {
+                    return contato.id === id;
+                });
+            });
+    }
 
 }
