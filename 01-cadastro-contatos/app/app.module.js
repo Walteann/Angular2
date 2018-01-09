@@ -8,8 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 const core_1 = require("@angular/core");
 const platform_browser_1 = require("@angular/platform-browser");
 const app_component_1 = require("./app.component");
-const contato_module_1 = require("./contatos/contato.module");
 const app_routing_module_1 = require("./app-routing.module");
+const contato_module_1 = require("./contatos/contato.module");
+const contato_service_1 = require("./contatos/services/contato.service");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -20,7 +21,10 @@ AppModule = __decorate([
             contato_module_1.ContatosModule
         ],
         declarations: [app_component_1.AppComponent],
-        bootstrap: [app_component_1.AppComponent]
+        bootstrap: [app_component_1.AppComponent],
+        providers: [
+            contato_service_1.ContatoService
+        ]
     })
 ], AppModule);
 exports.AppModule = AppModule;

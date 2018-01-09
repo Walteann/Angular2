@@ -1,0 +1,35 @@
+# Especifica arquivos intencionalmente não rastreados para ignorar ao usar o Git
+# http://git-scm.com/docs/gitignore
+
+* ~
+* .sw [mnpcod]
+*.registro
+* .tmp
+* .tmp. *
+log.txt
+* .sublime-project
+* .sublime-workspace
+.vscode /
+npm-debug.log *
+
+.idéia/
+.sourcemaps /
+.sass-cache /
+.tmp /
+.versões /
+cobertura/
+dist /
+node_modules /
+tmp /
+temp /
+ganchos /
+plataformas /
+plugins /
+plugins / android.json
+plugins / ios.json
+www /
+$ RECYCLE.BIN /
+
+.DS_Store
+Thumbs.db
+UserInterfaceState.xcuserstate

@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule} from '@angular/platform-browser';
 
-import {AppComponent} from './app.component';
-import {ContatosModule} from './contatos/contato.module';
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { ContatosModule } from './contatos/contato.module';
+import { ContatoService } from './contatos/services/contato.service';
 
-import {AppRoutingModule} from './app-routing.module';
 
 @NgModule({
     imports: [
@@ -14,7 +15,10 @@ import {AppRoutingModule} from './app-routing.module';
         
         ],
     declarations: [AppComponent],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    providers: [
+        ContatoService
+    ]
 })
 
 export class AppModule{}
