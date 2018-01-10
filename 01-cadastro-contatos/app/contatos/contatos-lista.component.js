@@ -18,7 +18,10 @@ let ContatosListaComponent = class ContatosListaComponent {
         this.getListContato();
     }
     getListContato() {
-        this.contatos = this.contatoService.getContatos();
+        this.contatoService.getContatosSlowly()
+            .then((contatos) => {
+            this.contatos = contatos;
+        }).catch(err => console.log(err));
     }
 };
 ContatosListaComponent = __decorate([

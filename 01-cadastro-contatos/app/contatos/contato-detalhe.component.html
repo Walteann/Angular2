@@ -2,24 +2,31 @@
 
     <h2>Salvar contato</h2>
 
-    <form >
+    <form #variavelContatoForm="ngForm">
 
-        <div class="form-group">
-            <label for="nome">Nome</label>
-            <input type="text" class="form-control" placeholder="Insira o Nome">
+        <div [ngClass]="getFormGroupClass(nome.valid, nome.pristine)">
+            <label for="nome" class="form-control-label">Nome</label>
+            <input type="text" [(ngModel)]="contato.nome" name="nome" [ngClass]="getControlClass(nome.valid, nome.pristine)"
+            #nome="ngModel" 
+            placeholder="Insira o Nome" required>
+            <div [hidden]="nome.valid || nome.pristine">O campo nome é obrigatório</div>
         </div>
-
-        <div class="form-group">
+        
+        <div [ngClass]="getFormGroupClass(email.valid, email.pristine)">
             <label for="email">Email</label>
-            <input type="email" class="form-control" placeholder="Insira o Email">
+            <input type="email" [(ngModel)]="contato.email" name="email" [ngClass]="getControlClass(email.valid, email.pristine)" 
+            placeholder="Insira o Email" #email="ngModel" required>
+            <div [hidden]="email.valid || email.pristine">O campo email é obrigatório</div>
         </div>
-
-        <div class="form-group">
+        
+        <div [ngClass]="getFormGroupClass(telefone.valid, telefone.pristine)">
             <label for="telefone">Telefone</label>
-            <input type="text" class="form-control" placeholder="Insira o Telefone">
+            <input type="text" [(ngModel)]="contato.telefone" name="telefone" [ngClass]="getControlClass(telefone.valid, telefone.pristine)" 
+            placeholder="Insira o Telefone" #telefone="ngModel" required>
+            <div [hidden]="telefone.valid || telefone.pristine">O campo telefone é obrigatório</div>
         </div>
 
-        <button type="submit" class="btn btn-info">Salvar</button>
+        <button type="submit" class="btn btn-info" [disabled]="!variavelContatoForm.form.valid">Salvar</button>
         <a routerLink="/" class="btn btn-secondary">Voltar</a>
 
 
