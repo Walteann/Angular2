@@ -12,7 +12,7 @@ import { Location } from '@angular/common';
     templateUrl: 'contato-detalhe.component.html'
 })
 
-export class ContatoDetalheComponent implements OnInit{
+export class ContatoDetalheComponent implements OnInit {
 
     contato: Contato;
 
@@ -20,22 +20,38 @@ export class ContatoDetalheComponent implements OnInit{
         private contatoService: ContatoService,
         private route: ActivatedRoute,
         private location: Location
-    ){}
+    ) { }
 
     ngOnInit(): void {
-       
-        this.contato = new Contato(0,'','','');
+
+        this.contato = new Contato(0, '', '', '');
 
         this.route.params.forEach((params: Params) => {
             let id: number = +params['id'];
-
-            console.log(id);
-
-            this.contatoService.getContatoPorId(id)
-                .then((contato: Contato) =>  {
-                    this.contato = contato
-                }); 
+            if (id) {
+                console.log(id);
+                this.contatoService.getContatoPorId(id)
+                    .then((contato: Contato) => {
+                        this.contato = contato
+                    });
+            }
         });
+    }
+
+    getFormGroupClass(isValid: boolean, isPristine: boolean): {} {
+        return {
+            'form-group': true, 
+            'has-danger': (!isValid && !isPristine), 
+            'has-success': (isValid && !isPristine) 
+        };
+    }
+
+    getControlClass(isValid: boolean, isPristine: boolean): {} {
+        return {
+            'form-control': true, 
+            'form-control-danger': (!isValid && !isPristine), 
+            'form-control-success': (isValid && !isPristine) 
+        };
     }
 }
 

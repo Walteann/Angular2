@@ -23,12 +23,28 @@ let ContatoDetalheComponent = class ContatoDetalheComponent {
         this.contato = new contato_model_1.Contato(0, '', '', '');
         this.route.params.forEach((params) => {
             let id = +params['id'];
-            console.log(id);
-            this.contatoService.getContatoPorId(id)
-                .then((contato) => {
-                this.contato = contato;
-            });
+            if (id) {
+                console.log(id);
+                this.contatoService.getContatoPorId(id)
+                    .then((contato) => {
+                    this.contato = contato;
+                });
+            }
         });
+    }
+    getFormGroupClass(isValid, isPristine) {
+        return {
+            'form-group': true,
+            'has-danger': (!isValid && !isPristine),
+            'has-success': (isValid && !isPristine)
+        };
+    }
+    getControlClass(isValid, isPristine) {
+        return {
+            'form-control': true,
+            'form-control-danger': (!isValid && !isPristine),
+            'form-control-success': (isValid && !isPristine)
+        };
     }
 };
 ContatoDetalheComponent = __decorate([
